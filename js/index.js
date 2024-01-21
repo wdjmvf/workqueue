@@ -5,8 +5,19 @@ function focusTitle()
     $('#txtQueueName').focus();
 }
 
+function showTable(){
+    if(_queue.length === 0) {
+        $("#myTable").hide();
+    } else {
+        $("#myTable").show();
+    }
+
+}
+
 function initDate()
 {
+    showTable();
+
     document.getElementById('start').valueAsDate = new Date();
     focusTitle();
 
@@ -15,6 +26,7 @@ function initDate()
             addWork();
         }
     });
+    
 }
 
 function addWork() {
@@ -40,6 +52,8 @@ function addWork() {
             queueNo: no
         }
     );
+
+    showTable();
     focusTitle();
     
 
@@ -62,8 +76,8 @@ function addWorkToTable(countRow, name, finishDate) {
         '<tr>'+
         '<td>'+ countRow +'</td>'+
         '<td>'+ name +'</td>'+
-        '<td>'+ convertTZ(finishDate, "Asia/Jakarta") +'</td>'+
-        '<td>'+ convertTZ(new Date(), "Asia/Jakarta") +'</td>'+
+        '<td>'+ convertTZ(finishDate, "Asia/Jakarta").toDateString() +'</td>'+
+        '<td>'+ convertTZ(new Date(), "Asia/Jakarta").toUTCString() +'</td>'+
         '</tr>'
 
     );
@@ -76,4 +90,5 @@ function onDateChange() {
 
     _queue = [];
     focusTitle();
+    showTable();
 }
