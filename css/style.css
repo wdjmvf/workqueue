@@ -42,3 +42,10 @@ div {
 button {
   height: 2rem;
 }
+.table-box {
+  width: 100%;
+  overflow-y: scroll;
+}
+.table-box table {
+  width: 100%;
+}
