@@ -3,6 +3,10 @@ const _txtQnameId = '#txtQueueName';
 const _ddlDepartmentId = '#ddlDepartment';
 const _ddlCourt = '#ddlCourt';
 
+$( document ).ready(function() {
+   initDate();
+});
+
 function focusDispatcherTextbox()
 {
     $('#txtDispatcher').focus();
@@ -21,12 +25,14 @@ function initDate()
 {
     showTable();
 
-    $('#start').datepicker("setDate", new Date());
+    $('#start').datepicker({
+        autoclose: true,
+        todayHighlight: true,
+        defaultDate: new Date()
+    });
 
-    $('#start').on('change', function(){
-        onDateChange();
-    })
-    
+  
+
     focusDispatcherTextbox();
 
     setEventKeyPressEnterToFocusNext('txtDispatcher', 'txtQueueName');
@@ -41,6 +47,7 @@ function initDate()
     $(_ddlCourt).on('change', function(){
         $(_txtQnameId).focus();
     })
+
     
 }
 
