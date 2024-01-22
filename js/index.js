@@ -1,8 +1,11 @@
 let _queue = [];
+const _txtQnameId = '#txtQueueName';
+const _ddlDepartmentId = '#ddlDepartment';
+const _ddlCourt = '#ddlCourt';
 
-function focusTitle()
+function focusDispatcherTextbox()
 {
-    $('#txtQueueName').focus();
+    $('#txtDispatcher').focus();
 }
 
 function showTable(){
@@ -18,15 +21,37 @@ function initDate()
 {
     showTable();
 
-    document.getElementById('start').valueAsDate = new Date();
-    focusTitle();
+    $('#start').datepicker("setDate", new Date());
 
-    $("#txtQueueName").keyup(function(event) {
+    $('#start').on('change', function(){
+        onDateChange();
+    })
+    
+    focusDispatcherTextbox();
+
+    setEventKeyPressEnterToFocusNext('txtDispatcher', 'txtQueueName');
+    
+
+    $(_txtQnameId).keyup(function(event) {
         if (event.keyCode === 13) {
             addWork();
         }
     });
+
+    $(_ddlCourt).on('change', function(){
+        $(_txtQnameId).focus();
+    })
     
+}
+
+function setEventKeyPressEnterToFocusNext(selectorId, nextSelectorId)
+{
+    $("#"+selectorId).keyup(function(event) {
+        if (event.keyCode === 13) {
+           $('#'+nextSelectorId) .focus();
+            
+        }
+    });
 }
 
 function addWork() {
@@ -54,7 +79,7 @@ function addWork() {
     );
 
     showTable();
-    focusTitle();
+    focusDispatcherTextbox();
     
 
     // Bonus: You can also put Date object to first arg
@@ -77,7 +102,7 @@ function addWorkToTable(countRow, name, finishDate) {
         '<td>'+ countRow +'</td>'+
         '<td>'+ name +'</td>'+
         '<td>'+ convertTZ(finishDate, "Asia/Jakarta").toDateString() +'</td>'+
-        '<td>'+ convertTZ(new Date(), "Asia/Jakarta").toUTCString() +'</td>'+
+        '<td>'+ convertTZ($('#start').val(), "Asia/Jakarta") +'</td>'+
         '</tr>'
 
     );
@@ -89,6 +114,6 @@ function onDateChange() {
     tableBodyRow.remove();
 
     _queue = [];
-    focusTitle();
+    focusDispatcherTextbox();
     showTable();
 }

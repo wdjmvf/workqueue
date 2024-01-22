@@ -4,42 +4,195 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>ทดสอบ Function การเพิ่มคิวงาน</title>
+
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
+
+    <!-- Custom Stylesheet -->
+    <link href="plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet">
+    <!-- Pignose Calender -->
+    <link href="plugins/pg-calendar/css/pignose.calendar.min.css" rel="stylesheet">
+
+    <!-- Date picker plugins css -->
+    <link href="plugins/bootstrap-datepicker/bootstrap-datepicker.min.css" rel="stylesheet">
+
+
+
 
     <link rel="stylesheet" href="css/style.css">
-    
-    <script src="js/jquery-3.7.1.min.js"></script>
-    <script src="js/index.js"></script>
+    <link rel="stylesheet" href="css/site.css">
+
 </head>
 
 <body onload="initDate()">
-    <div>
-        <h2>ทดสอบ Function การเพิ่มคิวงาน</h2>
-    </div>
-    <div>
-        <label for="start">Date</label>
-        <input type="date" id="start" name="trip-start"  min="2018-01-01" max="2090-12-31" onchange="onDateChange()" />
-    </div>
-    <div>
-        <label for="title">Title</label>
-        <input type="text" name="title" id="txtQueueName">
-        <button onclick="addWork()" type="button">Add work</button>
+
+    <div id="main-wrapper">
+        <div class="container-fluid mt-3">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="m-b-15 f-s-12">ทดสอบ Function การเพิ่มคิวงาน</h4>
+                            <hr>
+                            <br>
+                            <div class="basic-form">
+                                <form>
+                                    <div class="form-group">
+                                        <p class="text-muted m-b-20">วันที่สั่งงาน <span
+                                                style="color: red;">(ทำเพื่อจำลอง วันเดือนปี ที่สั่งงาน)</span></p>
+                                        <div class="input-group">
+                                            <input id="start" type="text" class="form-control mydatepicker"
+                                                placeholder="mm/dd/yyyy">
+                                            <span class="input-group-append"><span class="input-group-text"><i
+                                                        class="mdi mdi-calendar-check"></i></span></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <div class="col-md-6 mt-2">
+                                            <p class="text-muted m-b-20">ผู้สั่งงาน</p>
+                                            <div class="input-group">
+                                                <input id="txtDispatcher" type="text"
+                                                    class="form-control input-default">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6 mt-2">
+                                            <p class="text-muted m-b-20">แผนก</p>
+                                            <div class="basic-dropdown">
+                                                <select class="form-control" id="ddlDepartment" name="ddlDepartment">
+                                                    <option value="">โปรดเลือก</option>
+                                                    <option value="Clubhouse">Clubhouse</option>
+                                                    <option value="Golf course">Golf course</option>
+                                                    <option value="Pro shop">Pro shop</option>
+                                                    <option value="FB">FB</option>
+                                                    <option value="Kiosk">Kiosk</option>
+                                                    <option value="Sales marketing">Sales marketing</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <div class="col-md-6 mt-2">
+                                            <p class="text-muted m-b-20">สนาม</p>
+                                            <div class="basic-dropdown">
+                                                <select class="form-control" id="ddlCourt" name="ddlCourt">
+                                                    <option value="">โปรดเลือก</option>
+                                                    <option value="OC">OC</option>
+                                                    <option value="PL">PL</option>
+                                                    <option value="RH">RH</option>
+                                                    <option value="WS">WS</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mt-2">
+                                            <p class="text-muted m-b-20">ชื่องาน</p>
+                                            <div class="input-group">
+                                                <input id="txtQueueName" type="text" class="form-control input-default n-input">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <div class="col-md-6 mt-2">
+                                            <p class="text-muted m-b-20">จุดประสงค์</p>
+                                            <div class="input-group">
+
+                                                <textarea class="form-control h-150px" rows="6"
+                                                    id="txtObjective"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mt-2">
+                                            <p class="text-muted m-b-20">ข้อความเด่น</p>
+                                            <div class="input-group">
+
+                                                <textarea class="form-control h-150px" rows="6"
+                                                    id="txtHighlightText"></textarea>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <div class="col-md-6 mt-2">
+                                            <p class="text-muted m-b-20">ข้อความย่อย</p>
+                                            <div class="input-group">
+
+                                                <textarea class="form-control h-150px" rows="6"
+                                                    id="txtSubText"></textarea>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6 mt-2">
+                                            <p class="text-muted m-b-20">ข้อมูล</p>
+                                            <div class="input-group">
+                                                <textarea class="form-control h-150px" rows="6"
+                                                    id="txtInformation"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <div class="col-md-12">
+                                            <button onclick="addWork()" type="button" class="btn btn-primary">Add Work
+                                                +</button>
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-title">
+                                <h4>ตารางการสั่งงาน</h4>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped verticle-middle" id="myTable"
+                                    style="display: none;">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>ชื่องาน</th>
+                                            <th style="color: red;">วันครบกำหนด</th>
+                                            <th>วันที่สั่งงาน</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="table-box">
-        <table id="myTable" border="1" style="display: none;">
 
-            <thead>
-                <th style="width:10%;">Queue No</th>
-                <th>Queue Title</th>
-                <th style="width: 25%;">Finish Date</th>
-                <th style="width: 25%;">Created Date</th>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
-        <label id="finishDate"></label>
-    </div>
+    <!-- JQuery -->
+    <script src="js/jquery-3.7.1.min.js"></script>
+
+    <!-- Date Picker Plugin JavaScript -->
+    <script src="plugins/moment/moment.js"></script>
+    <script src="plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
+    <script src="plugins/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+    <script src="js/plugins-init/form-pickers-init.js"></script>
+
+    <script src="js/custom.min.js"></script>
+
+    <script src="js/plugins-init/form-pickers-init.js"></script>
+    <script src="js/index.js"></script>
+
+
 </body>
 
 </html>
