@@ -41,17 +41,14 @@
                                         <p class="text-muted m-b-20">วันที่สั่งงาน <span
                                                 style="color: red;">(ทำเพื่อจำลอง วันเดือนปี ที่สั่งงาน)</span></p>
                                         <div class="input-group">
-                                            <input id="start" type="text" class="form-control"
-                                                placeholder="mm/dd/yyyy" onchange="onDateChange()">
+                                            <input id="start" type="text" class="form-control" placeholder="mm/dd/yyyy"
+                                                onchange="onDateChange()">
                                             <span class="input-group-append"><span class="input-group-text"><i
                                                         class="mdi mdi-calendar-check"></i></span></span>
-                                        
-                                        
-                                                        
-                                        
-                                                    </div>
 
-                                                   
+                                        </div>
+
+
                                     </div>
 
                                     <div class="form-group row">
@@ -66,7 +63,8 @@
                                         <div class="col-md-6 mt-2">
                                             <p class="text-muted m-b-20">แผนก</p>
                                             <div class="basic-dropdown">
-                                                <select class="form-control" id="ddlDepartment" name="ddlDepartment">
+                                                <select class="form-control" id="ddlDepartment" name="ddlDepartment"
+                                                    onchange="showOrHidetxtOthersDepartment()">
                                                     <option value="">โปรดเลือก</option>
                                                     <option value="Clubhouse">Clubhouse</option>
                                                     <option value="Golf course">Golf course</option>
@@ -74,7 +72,10 @@
                                                     <option value="FB">FB</option>
                                                     <option value="Kiosk">Kiosk</option>
                                                     <option value="Sales marketing">Sales marketing</option>
+                                                    <option value="Others">อื่นๆ</option>
                                                 </select>
+                                                <input type="text" id="txtOthersDepartment"
+                                                    class="form-control input-default" style="display: none;">
                                             </div>
                                         </div>
                                     </div>
@@ -95,13 +96,14 @@
                                         <div class="col-md-6 mt-2">
                                             <p class="text-muted m-b-20">ชื่องาน</p>
                                             <div class="input-group">
-                                                <input id="txtQueueName" type="text" class="form-control input-default n-input">
+                                                <input id="txtQueueName" type="text"
+                                                    class="form-control input-default n-input">
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="form-group row">
-                                        <div class="col-md-6 mt-2">
+                                        <div class="col-md-12 mt-2">
                                             <p class="text-muted m-b-20">จุดประสงค์</p>
                                             <div class="input-group">
 
@@ -109,7 +111,7 @@
                                                     id="txtObjective"></textarea>
                                             </div>
                                         </div>
-                                        <div class="col-md-6 mt-2">
+                                        <div class="col-md-12 mt-2">
                                             <p class="text-muted m-b-20">ข้อความเด่น</p>
                                             <div class="input-group">
 
@@ -121,7 +123,7 @@
                                     </div>
 
                                     <div class="form-group row">
-                                        <div class="col-md-6 mt-2">
+                                        <div class="col-md-12 mt-2">
                                             <p class="text-muted m-b-20">ข้อความย่อย</p>
                                             <div class="input-group">
 
@@ -130,7 +132,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-md-6 mt-2">
+                                        <div class="col-md-12 mt-2">
                                             <p class="text-muted m-b-20">ข้อมูล</p>
                                             <div class="input-group">
                                                 <textarea class="form-control h-150px" rows="6"
@@ -183,9 +185,9 @@
         </div>
     </div>
 
-
     <!-- JQuery -->
     <script src="js/jquery-3.7.1.min.js"></script>
+    <!-- <script src="js/jquery-ui.js"></script> -->
 
     <!-- Date Picker Plugin JavaScript -->
     <script src="plugins/moment/moment.js"></script>
