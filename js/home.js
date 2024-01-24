@@ -15,7 +15,7 @@ $( document ).ready(function() { // เริ่มการทำงาน even
    // แสดงหรือซ่อน textbox txtOthersDepartment
    showOrHidetxtOthersDepartment();
 
-
+   
 
 
 
@@ -65,7 +65,6 @@ function showOrHidetxtOthersDepartment()
 {
     // แสดงหรือซ่อน textbox txtOthersDepartment
    const departmentValue = $('#ddlDepartment').val();
-   console.log('showOrHidetxtOthersDepartment', departmentValue);
    if (departmentValue === 'Others') 
    {
         $('#txtOthersDepartment').show();

@@ -66,6 +66,8 @@ function addWork() {
     const txtName = document.getElementById('txtQueueName');
     const name = txtName.value
 
+    const dispatcher = document.getElementById('txtDispatcher').value;
+
     const datePicker = document.getElementById('start');
     const dateNow = new Date(datePicker.value);
 
@@ -74,7 +76,7 @@ function addWork() {
     finishDate.setDate((dateNow.getDate() + countQueue) );
     let no = _queue.length + 1;
 
-    addWorkToTable(no, name, finishDate)
+    addWorkToTable(no, name, finishDate, dispatcher)
     txtName.value = '';
 
     _queue.push(
@@ -100,13 +102,19 @@ function convertTZ(date, tzString) {
 
 }
 
-function addWorkToTable(countRow, name, finishDate) {
+function addWorkToTable(countRow, name, finishDate, dispatcher) {
     var table = $("#myTable");
     var tableBody = table.find('tbody');
+    let img = '<img class="img-dispatcher" alt='+dispatcher+' src=images/dispatcher/'+ dispatcher +'.jpg>';
+    if(dispatcher !== 'mao' && dispatcher !== 'theone') {
+        img = '';
+    }
+    
     
     tableBody.append(
         '<tr>'+
         '<td>'+ countRow +'</td>'+
+        '<td>'+ img +' <span>'+ dispatcher +'</span></td>'+
         '<td>'+ name +'</td>'+
         '<td>'+ convertTZ(finishDate, "Asia/Jakarta").toDateString() +'</td>'+
         '<td>'+ convertTZ($('#start').val(), "Asia/Jakarta") +'</td>'+
